@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+interface Crumb { name: string; path: string }
+interface Props {
+  title: string; description: string; noindex?: boolean;
+  pageName?: string; crumbs?: Crumb[];
+  service?: { name: string; areaServed?: string[] } | null;
+  faq?: { q: string; a: string }[];
+  pageType?: 'WebPage' | 'ContactPage' | 'AboutPage' | 'CollectionPage';
+}
+const { title, description, noindex = false, pageName, crumbs = [], service = null, faq = [], pageType = 'WebPage' } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b6fb8" />
+    <meta name="format-detection" content="telephone=yes" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <Seo title={title} description={description} noindex={noindex} />
+    <JsonLd pageName={pageName ?? title} description={description} crumbs={crumbs} service={service} faq={faq} pageType={pageType} />
+  </head>
+  <body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <Header />
+    <main id="conteudo"><slot /></main>
+    <Footer />
+    <MobileBar />
+  </body>
+</html>

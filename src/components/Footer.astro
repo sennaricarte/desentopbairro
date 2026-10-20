@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE, telLink, waLink } from '../config/site';
+const all = (await getCollection('paginas')).filter((p) => !p.data.noindex);
+const by = (g: string) => all.filter((p) => p.data.group === g && p.data.kind !== 'hub').sort((a, b) => a.data.order - b.data.order);
+const cols = [
+  { h: 'Desentupimento', items: by('desentupimento') },
+  { h: 'Esgotamento e limpeza', items: by('esgotamento') },
+];
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h2>{SITE.name}</h2>
+        <p>{SITE.tagline}. {SITE.areaServedText}.</p>
+        <p><a href={telLink}>{SITE.phoneDisplay}</a><br /><a href={waLink()} rel="noopener">WhatsApp</a></p>
+        <p>{SITE.openingHoursText}.</p>
+      </div>
+      {cols.map((c) => (
+        <div>
+          <h2>{c.h}</h2>
+          <ul>{c.items.map((i) => <li><a href={`/${i.id}/`}>{i.data.title}</a></li>)}</ul>
+        </div>
+      ))}
+      <div>
+        <h2>Empresa</h2>
+        <ul>
+          <li><a href="/encanador/">Encanador</a></li>
+          <li><a href="/areas-atendidas/">Áreas atendidas</a></li>
+          <li><a href="/sobre-nos/">Sobre nós</a></li>
+          <li><a href="/contato/">Contato</a></li>
+          <li><a href="/politica-de-privacidade/">Política de privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© {year} {SITE.name}. Todos os direitos reservados.</p>
+  </div>
+</footer>

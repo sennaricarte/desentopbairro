@@ -1,0 +1,57 @@
+---
+import { SITE } from '../config/site';
+interface Crumb { name: string; path: string }
+interface Props {
+  pageName: string; description: string; crumbs?: Crumb[];
+  service?: { name: string; areaServed?: string[] } | null;
+  faq?: { q: string; a: string }[];
+  pageType?: 'WebPage' | 'ContactPage' | 'AboutPage' | 'CollectionPage';
+}
+const { pageName, description, crumbs = [], service = null, faq = [], pageType = 'WebPage' } = Astro.props;
+const abs = (p: string) => new URL(p, SITE.url).href;
+const url = abs(Astro.url.pathname);
+const BUSINESS = abs('/#negocio');
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': ['Plumber', 'LocalBusiness'],
+    '@id': BUSINESS,
+    name: SITE.name,
+    description: 'Desentupidora com atendimento 24 horas: desentupimento de pia, ralo, vaso sanitário, esgoto e colunas, hidrojateamento, vídeo inspeção e limpa fossa.',
+    url: SITE.url + '/',
+    telephone: SITE.phoneE164,
+    logo: abs('/logo-schema.png'),
+    image: abs('/og.png'),
+    priceRange: '$$',
+    areaServed: { '@type': 'AdministrativeArea', name: 'Estado de São Paulo' },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+      opens: '00:00', closes: '23:59',
+    },
+    contactPoint: { '@type': 'ContactPoint', telephone: SITE.phoneE164, contactType: 'customer service', availableLanguage: 'pt-BR', areaServed: 'BR' },
+  },
+  { '@type': 'WebSite', '@id': abs('/#site'), url: SITE.url + '/', name: SITE.name, inLanguage: 'pt-BR', publisher: { '@id': BUSINESS } },
+  { '@type': pageType, '@id': url + '#pagina', url, name: pageName, description, inLanguage: 'pt-BR', isPartOf: { '@id': abs('/#site') }, about: { '@id': BUSINESS } },
+];
+if (crumbs.length) {
+  graph.push({
+    '@type': 'BreadcrumbList', '@id': url + '#breadcrumb',
+    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: abs(c.path) })),
+  });
+}
+if (service) {
+  graph.push({
+    '@type': 'Service', '@id': url + '#servico', name: service.name, serviceType: service.name,
+    provider: { '@id': BUSINESS }, url,
+    areaServed: (service.areaServed?.length ? service.areaServed : ['Estado de São Paulo']).map((n) => ({ '@type': 'AdministrativeArea', name: n })),
+  });
+}
+if (faq.length) {
+  graph.push({
+    '@type': 'FAQPage', '@id': url + '#faq',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  });
+}
+const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+<script type="application/ld+json" set:html={json} />

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, telLink, waLink } from '../config/site';
+---
+<Base title="Página não encontrada | Desentop Bairro" description="A página que você procura não existe mais. Volte ao início ou fale com a Desentop Bairro pelo telefone ou WhatsApp." noindex={true}>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Página não encontrada</h1>
+      <p class="lead">O endereço pode ter mudado. Veja os serviços ou fale com a gente.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="/">Ir para o início</a>
+        <a class="btn btn-ghost" href="/desentupidora/">Ver serviços</a>
+        <a class="btn btn-wa" href={waLink()} rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>

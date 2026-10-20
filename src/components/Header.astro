@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { SITE, telLink } from '../config/site';
+const p = Astro.url.pathname;
+const links = [
+  { href: '/desentupidora/', label: 'Desentupimento' },
+  { href: '/limpa-fossa/', label: 'Limpa fossa' },
+  { href: '/hidrojateamento/', label: 'Hidrojateamento' },
+  { href: '/areas-atendidas/', label: 'Áreas atendidas' },
+  { href: '/sobre-nos/', label: 'Sobre' },
+  { href: '/contato/', label: 'Contato' },
+];
+---
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label={`${SITE.name} — página inicial`}>
+      <Image src={logo} alt={`Logo ${SITE.name}`} width={150} height={67} loading="eager" fetchpriority="high" />
+    </a>
+    <nav class="nav" aria-label="Principal">
+      {links.map((l) => <a href={l.href} aria-current={p === l.href ? 'page' : undefined}>{l.label}</a>)}
+      <a class="btn btn-primary" href={telLink}>Ligar {SITE.phoneDisplay}</a>
+    </nav>
+    <details class="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Principal (mobile)">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>

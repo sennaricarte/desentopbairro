@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { SITE, telLink, waLink } from '../config/site';
+
+export async function getStaticPaths() {
+  const all = await getCollection('paginas');
+  return all.map((entry) => ({ params: { slug: entry.id }, props: { entry, all } }));
+}
+const { entry, all } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const mid = data.kind === 'local' ? [{ name: 'Áreas atendidas', path: '/areas-atendidas/' }] : data.kind === 'hub' || data.group === 'institucional' ? [] : [{ name: 'Serviços', path: '/desentupidora/' }];
+const crumbs = [{ name: 'Início', path: '/' }, ...mid, { name: data.title, path: `/${entry.id}/` }];
+const byId = new Map(all.map((p) => [p.id, p]));
+const related = data.related.map((id) => byId.get(id)).filter(Boolean);
+const children = data.kind === 'hub'
+  ? all.filter((p) => p.id !== entry.id && p.data.kind !== 'hub' && ['desentupimento', 'esgotamento', 'hidraulica'].includes(p.data.group) && !p.data.noindex).sort((a, b) => a.data.order - b.data.order)
+  : [];
+const locals = entry.id === 'areas-atendidas' ? all.filter((p) => p.data.kind === 'local') : [];
+const isService = data.kind === 'servico' || data.kind === 'local';
+const pageType = entry.id === 'contato' ? 'ContactPage' : entry.id === 'sobre-nos' ? 'AboutPage' : data.kind === 'hub' ? 'CollectionPage' : 'WebPage';
+---
+<Base
+  title={data.seoTitle}
+  description={data.description}
+  noindex={data.noindex}
+  pageName={data.title}
+  crumbs={crumbs}
+  service={isService ? { name: data.title, areaServed: data.areaServed } : null}
+  faq={data.faq}
+  pageType={pageType}
+>
+  <section class="hero">
+    <div class="wrap">
+      <Crumbs items={crumbs} />
+      {isService && <span class="badge">{SITE.openingHoursText}</span>}
+      <h1>{data.title}</h1>
+      <p class="lead">{data.intro}</p>
+      <div class="btns">
+        <a class="btn btn-primary" href={telLink}>Ligar {SITE.phoneDisplay}</a>
+        <a class="btn btn-wa" href={waLink(`Olá! Preciso de ajuda com: ${data.title}.`)} rel="noopener">Chamar no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap page">
+    <article class="prose">
+      <Content />
+
+      {children.length > 0 && (
+        <>
+          <h2>Todos os serviços</h2>
+          <div class="grid">
+            {children.map((c) => (
+              <a class="tile" href={`/${c.id}/`}><strong>{c.data.title}</strong><span>{c.data.cardText ?? c.data.description}</span></a>
+            ))}
+          </div>
+        </>
+      )}
+
+      {locals.length > 0 && (
+        <>
+          <h2>Páginas por cidade</h2>
+          <div class="grid">
+            {locals.map((c) => (
+              <a class="tile" href={`/${c.id}/`}><strong>{c.data.title}</strong><span>{c.data.cardText ?? c.data.description}</span></a>
+            ))}
+          </div>
+        </>
+      )}
+
+      {data.faq.length > 0 && (
+        <>
+          <h2>Perguntas frequentes</h2>
+          {data.faq.map((f) => (
+            <details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>
+          ))}
+        </>
+      )}
+    </article>
+
+    <aside class="aside">
+      <div class="card cta sticky">
+        <h2 style="font-size:1.25rem">Entupiu? Fale agora</h2>
+        <p>{SITE.openingHoursText}. Descreva o problema e peça seu orçamento.</p>
+        <a class="btn btn-primary" href={telLink}>Ligar {SITE.phoneDisplay}</a>
+        <a class="btn btn-wa" href={waLink(`Olá! Preciso de ajuda com: ${data.title}.`)} rel="noopener">WhatsApp</a>
+      </div>
+      {related.length > 0 && (
+        <div class="card">
+          <h3>Veja também</h3>
+          <ul>{related.map((r) => <li><a href={`/${r!.id}/`}>{r!.data.title}</a></li>)}</ul>
+        </div>
+      )}
+    </aside>
+  </div>
+</Base>
