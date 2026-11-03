@@ -1,0 +1,20 @@
+---
+import { Picture } from 'astro:assets';
+import { FOTOS, type FotoKey } from '../config/fotos';
+interface Props { name: FotoKey; priority?: boolean; sizes?: string; caption?: boolean; class?: string }
+const { name, priority = false, sizes = '(min-width: 960px) 720px, 100vw', caption = true, class: cls = '' } = Astro.props;
+const f = FOTOS[name];
+---
+<figure class:list={['foto', cls]}>
+  <Picture
+    src={f.src}
+    alt={f.alt}
+    widths={[480, 720, 1000]}
+    sizes={sizes}
+    formats={['avif', 'webp']}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+  />
+  {caption && <figcaption>{f.caption}</figcaption>}
+</figure>

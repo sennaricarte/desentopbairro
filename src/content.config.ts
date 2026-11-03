@@ -12,6 +12,7 @@ const paginas = defineCollection({
     order: z.number().default(100),
     intro: z.string(),            // lead acima da dobra
     cardText: z.string().optional(),
+    foto: z.enum(['cabo', 'ralo', 'escavacao', 'parede']).optional(),
     related: z.array(z.string()).default([]),
     faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
     areaServed: z.array(z.string()).default([]),

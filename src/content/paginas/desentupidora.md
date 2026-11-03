@@ -6,6 +6,7 @@ kind: hub
 group: desentupimento
 order: 1
 intro: "Pia, ralo, vaso, coluna ou rede de esgoto: escolha o serviço e fale com a gente. Atendimento 24 horas, todos os dias."
+foto: cabo
 related: [desentupidora-de-pia, desentupidora-de-ralo, desentupidora-de-vasos-sanitarios, desentupidora-de-rede-de-esgotos]
 faq:
   - q: "Quando devo chamar uma desentupidora?"

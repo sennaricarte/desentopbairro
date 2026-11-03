@@ -7,6 +7,7 @@ group: hidraulica
 order: 20
 intro: "Vazamentos e problemas hidráulicos pedem diagnóstico correto. Descreva o problema e peça orçamento."
 cardText: "Vazamentos, torneiras e reparos hidráulicos."
+foto: parede
 related: [video-inspecao, desentupidora-de-ralo, desentupidora-de-pia]
 faq:
   - q: "Como saber se há vazamento escondido?"

@@ -7,6 +7,7 @@ group: desentupimento
 order: 7
 intro: "Esgoto voltando pelo ralo ou pelo vaso é sinal de rede obstruída. O serviço deve ser rápido por risco à saúde e ao imóvel."
 cardText: "Rede coletora, caixas de inspeção e esgoto em geral."
+foto: escavacao
 related: [hidrojateamento, video-inspecao, desentupidora-de-vasos-sanitarios]
 faq:
   - q: "Quais sinais indicam entupimento na rede de esgoto?"

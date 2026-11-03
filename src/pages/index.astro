@@ -1,6 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Foto from '../components/Foto.astro';
+import { getImage } from 'astro:assets';
+import { FOTOS } from '../config/fotos';
 import { SITE, telLink, waLink } from '../config/site';
 
 const all = (await getCollection('paginas')).filter((p) => !p.data.noindex);
@@ -15,19 +18,23 @@ const faq = [
   { q: 'Preciso quebrar piso ou parede para desentupir?', a: 'Na maioria dos casos, não. O equipamento adequado desobstrui a tubulação por dentro. A vídeo inspeção ajuda a localizar o problema quando a causa não é clara.' },
   { q: 'Como peço um orçamento?', a: 'Ligue ou chame no WhatsApp, descreva o problema e informe cidade e bairro. Foto ou vídeo ajudam. Peça o orçamento antes de aprovar o serviço.' },
 ];
+const heroImg = await getImage({ src: FOTOS.cabo.src, width: 1200, format: 'jpg' });
 const title = 'Desentupidora 24 Horas em São Paulo e Região | Desentop Bairro';
 const description = 'Desentupidora 24 horas: pia, ralo, vaso sanitário, esgoto, limpa fossa e hidrojateamento. Atendimento em SP e região. Ligue ou chame no WhatsApp.';
 ---
-<Base title={title} description={description} pageName="Desentupidora 24 Horas em São Paulo e Região" faq={faq}>
+<Base title={title} description={description} pageName="Desentupidora 24 Horas em São Paulo e Região" faq={faq} image={{ url: new URL(heroImg.src, SITE.url).href, alt: FOTOS.cabo.alt, width: heroImg.attributes.width, height: heroImg.attributes.height }}>
   <section class="hero">
-    <div class="wrap">
-      <span class="badge">{SITE.openingHoursText}</span>
-      <h1>Desentupidora 24 horas em São Paulo e região</h1>
-      <p class="lead">Entupiu? Desentupimos pia, ralo, vaso sanitário, colunas e redes de esgoto em casas, comércios e condomínios. Fale agora e peça seu orçamento.</p>
-      <div class="btns">
-        <a class="btn btn-primary" href={telLink}>Ligar {SITE.phoneDisplay}</a>
-        <a class="btn btn-wa" href={waLink()} rel="noopener">Chamar no WhatsApp</a>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge">{SITE.openingHoursText}</span>
+        <h1>Desentupidora 24 horas em São Paulo e região</h1>
+        <p class="lead">Entupiu? Desentupimos pia, ralo, vaso sanitário, colunas e redes de esgoto em casas, comércios e condomínios. Fale agora e peça seu orçamento.</p>
+        <div class="btns">
+          <a class="btn btn-primary" href={telLink}>Ligar {SITE.phoneDisplay}</a>
+          <a class="btn btn-wa" href={waLink()} rel="noopener">Chamar no WhatsApp</a>
+        </div>
       </div>
+      <Foto name="cabo" priority={true} caption={false} sizes="(min-width: 900px) 480px, 100vw" />
     </div>
   </section>
 
@@ -51,6 +58,18 @@ const description = 'Desentupidora 24 horas: pia, ralo, vaso sanitário, esgoto,
         <li><strong>Desobstruímos</strong><br />Equipamento adequado ao tipo de tubulação.</li>
         <li><strong>Orientamos</strong><br />Explicamos a causa e como evitar que volte.</li>
       </ol>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <h2>O trabalho em campo</h2>
+      <p>Equipamento de cabo, abertura de acesso e reparo: veja como são alguns atendimentos.</p>
+      <div class="galeria">
+        <Foto name="ralo" sizes="(min-width: 900px) 360px, 100vw" />
+        <Foto name="escavacao" sizes="(min-width: 900px) 360px, 100vw" />
+        <Foto name="parede" sizes="(min-width: 900px) 360px, 100vw" />
+      </div>
     </div>
   </section>
 

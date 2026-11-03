@@ -12,8 +12,9 @@ interface Props {
   service?: { name: string; areaServed?: string[] } | null;
   faq?: { q: string; a: string }[];
   pageType?: 'WebPage' | 'ContactPage' | 'AboutPage' | 'CollectionPage';
+  image?: { url: string; alt: string; width?: number; height?: number };
 }
-const { title, description, noindex = false, pageName, crumbs = [], service = null, faq = [], pageType = 'WebPage' } = Astro.props;
+const { title, description, noindex = false, pageName, crumbs = [], service = null, faq = [], pageType = 'WebPage', image } = Astro.props;
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -25,7 +26,7 @@ const { title, description, noindex = false, pageName, crumbs = [], service = nu
     <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <Seo title={title} description={description} noindex={noindex} />
-    <JsonLd pageName={pageName ?? title} description={description} crumbs={crumbs} service={service} faq={faq} pageType={pageType} />
+    <JsonLd pageName={pageName ?? title} description={description} crumbs={crumbs} service={service} faq={faq} pageType={pageType} image={image} />
   </head>
   <body>
     <a class="skip" href="#conteudo">Pular para o conteúdo</a>

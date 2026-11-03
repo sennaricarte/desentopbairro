@@ -21,7 +21,7 @@ for (const f of pages) {
   if (!is404 && !/application\/ld\+json/.test(h)) err(f, 'sem JSON-LD');
   for (const b of BANNED) { const text = h.replace(/<script.*?<\/script>/gs, ''); if (b.test(text)) err(f, `termo proibido ${b}`); }
   for (const m of h.matchAll(/href="(\/[^"#?]*)"/g)) { const u = m[1]; if (u.startsWith('/_astro') || /\.(png|xml|txt|ico|webp|jpg)$/.test(u)) continue; if (!routes.has(u)) err(f, `link interno quebrado ${u}`); }
-  for (const m of h.matchAll(/<img\b[^>]*>/g)) if (!/ alt="[^"]+"/.test(m[0])) err(f, 'img sem alt');
+  for (const m of h.matchAll(/<img\b[^>]*>/g)) { if (!/ alt="[^"]+"/.test(m[0])) err(f, 'img sem alt'); if (!/ width="\d+"/.test(m[0]) || !/ height="\d+"/.test(m[0])) err(f, 'img sem width/height (CLS)'); }
   if (!is404 && !PHONE_OK.test(h)) err(f, 'telefone oficial ausente');
   const phones = new Set([...h.matchAll(/\(?\b(1[1-9])\)? ?9\d{4}-?\d{4}/g)].map((m) => m[0].replace(/\D/g, '')));
   phones.delete('15997782797'); if (phones.size) err(f, `outros telefones: ${[...phones]}`);

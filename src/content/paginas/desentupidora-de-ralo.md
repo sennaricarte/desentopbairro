@@ -7,6 +7,7 @@ group: desentupimento
 order: 5
 intro: "Ralo lento, com mau cheiro ou devolvendo água? Desentupimos ralos internos e externos, em residências e empresas."
 cardText: "Ralos internos e externos."
+foto: ralo
 related: [desentupidora-de-pia, desentupidora-de-rede-de-esgotos, desentupimento]
 faq:
   - q: "Posso usar arame para desentupir o ralo?"

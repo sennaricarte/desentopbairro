@@ -6,8 +6,9 @@ interface Props {
   service?: { name: string; areaServed?: string[] } | null;
   faq?: { q: string; a: string }[];
   pageType?: 'WebPage' | 'ContactPage' | 'AboutPage' | 'CollectionPage';
+  image?: { url: string; alt: string; width?: number; height?: number };
 }
-const { pageName, description, crumbs = [], service = null, faq = [], pageType = 'WebPage' } = Astro.props;
+const { pageName, description, crumbs = [], service = null, faq = [], pageType = 'WebPage', image } = Astro.props;
 const abs = (p: string) => new URL(p, SITE.url).href;
 const url = abs(Astro.url.pathname);
 const BUSINESS = abs('/#negocio');
@@ -51,6 +52,12 @@ if (faq.length) {
     '@type': 'FAQPage', '@id': url + '#faq',
     mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   });
+}
+if (image) {
+  const page = graph.find((n) => n['@type'] === pageType) as Record<string, unknown>;
+  page.primaryImageOfPage = { '@id': url + '#imagem' };
+  page.image = { '@id': url + '#imagem' };
+  graph.push({ '@type': 'ImageObject', '@id': url + '#imagem', url: image.url, contentUrl: image.url, caption: image.alt, width: image.width, height: image.height });
 }
 const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 ---

@@ -2,6 +2,9 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Crumbs from '../components/Crumbs.astro';
+import Foto from '../components/Foto.astro';
+import { getImage } from 'astro:assets';
+import { FOTOS } from '../config/fotos';
 import { SITE, telLink, waLink } from '../config/site';
 
 export async function getStaticPaths() {
@@ -19,6 +22,7 @@ const children = data.kind === 'hub'
   ? all.filter((p) => p.id !== entry.id && p.data.kind !== 'hub' && ['desentupimento', 'esgotamento', 'hidraulica'].includes(p.data.group) && !p.data.noindex).sort((a, b) => a.data.order - b.data.order)
   : [];
 const locals = entry.id === 'areas-atendidas' ? all.filter((p) => p.data.kind === 'local') : [];
+const fotoImg = data.foto ? await getImage({ src: FOTOS[data.foto].src, width: 1200, format: 'jpg' }) : null;
 const isService = data.kind === 'servico' || data.kind === 'local';
 const pageType = entry.id === 'contato' ? 'ContactPage' : entry.id === 'sobre-nos' ? 'AboutPage' : data.kind === 'hub' ? 'CollectionPage' : 'WebPage';
 ---
@@ -31,6 +35,7 @@ const pageType = entry.id === 'contato' ? 'ContactPage' : entry.id === 'sobre-no
   service={isService ? { name: data.title, areaServed: data.areaServed } : null}
   faq={data.faq}
   pageType={pageType}
+  image={fotoImg ? { url: new URL(fotoImg.src, SITE.url).href, alt: FOTOS[data.foto!].alt, width: fotoImg.attributes.width, height: fotoImg.attributes.height } : undefined}
 >
   <section class="hero">
     <div class="wrap">
@@ -47,6 +52,7 @@ const pageType = entry.id === 'contato' ? 'ContactPage' : entry.id === 'sobre-no
 
   <div class="wrap page">
     <article class="prose">
+      {data.foto && <Foto name={data.foto} class="lateral" />}
       <Content />
 
       {children.length > 0 && (
