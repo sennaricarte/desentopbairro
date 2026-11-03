@@ -18,7 +18,7 @@ O entupimento de pia é um dos mais comuns e dos que mais atrapalham a rotina. N
 
 ## O que fazemos
 
-Atendemos pias de cozinha, banheiros, lavatórios e tanques, em casas, apartamentos e comércios. A equipe avalia o ramal, localiza a obstrução e desobstrui o cano com o equipamento adequado, procurando evitar danos ao imóvel.
+Atendemos pias de cozinha, banheiros, lavatórios e tanques, em casas, apartamentos e comércios. O profissional avalia o ramal, localiza a obstrução e desobstrui o cano com o equipamento adequado, procurando evitar danos ao imóvel.
 
 ## Como evitar o entupimento de pia
 

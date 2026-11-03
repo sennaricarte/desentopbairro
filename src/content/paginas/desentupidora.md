@@ -24,7 +24,7 @@ A **Desentop Bairro** atende residências, condomínios e comércios. Abaixo est
 
 1. **Contato:** você liga ou chama no WhatsApp e descreve o problema.
 2. **Avaliação:** identificamos o tipo de entupimento e o ponto provável da obstrução.
-3. **Desobstrução:** usamos o equipamento adequado ao tipo de tubulação, buscando preservar piso e paredes.
+3. **Desobstrução:** o profissional usa o equipamento adequado ao tipo de tubulação, buscando preservar piso e paredes.
 4. **Orientação:** explicamos a causa e como evitar que o problema volte.
 
 ## O que costuma causar entupimentos

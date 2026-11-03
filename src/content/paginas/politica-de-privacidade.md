@@ -19,7 +19,7 @@ Este site não tem formulários nem cadastro. Os dados que recebemos são os que
 
 ## Compartilhamento
 
-Não vendemos seus dados. Compartilhamos apenas o necessário para executar o serviço ou quando a lei exigir.
+Não vendemos seus dados. Compartilhamos apenas o necessário para executar o serviço, inclusive com empresas parceiras que realizam o atendimento, ou quando a lei exigir.
 
 ## Cookies e medição
 

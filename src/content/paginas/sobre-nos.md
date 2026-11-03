@@ -10,7 +10,7 @@ related: [desentupidora, limpa-fossa, hidrojateamento, video-inspecao]
 ---
 ## Quem somos
 
-A **Desentop Bairro** é uma empresa de desentupimento e limpeza de tubulações. Atendemos residências, comércios e condomínios.
+A **Desentop Bairro** coordena serviços de desentupimento e limpeza de tubulações para residências, comércios e condomínios.
 
 ## O que fazemos
 
@@ -21,7 +21,9 @@ A **Desentop Bairro** é uma empresa de desentupimento e limpeza de tubulações
 
 ## Como trabalhamos
 
-Avaliamos o problema, explicamos a causa e executamos o serviço com o equipamento adequado, procurando preservar piso e paredes. Também orientamos sobre como evitar que o entupimento volte.
+A Desentop Bairro recebe o seu pedido, define o serviço e coordena o atendimento. **O atendimento pode ser executado por empresas parceiras.** Você fala sempre com a Desentop Bairro, que responde pelo serviço contratado.
+
+O profissional avalia o problema, explica a causa e executa o serviço com o equipamento adequado, procurando preservar piso e paredes. Também orienta sobre como evitar que o entupimento volte.
 
 ## Onde atendemos
 

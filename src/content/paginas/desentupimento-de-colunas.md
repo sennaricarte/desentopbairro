@@ -18,7 +18,7 @@ Entupimento de coluna costuma aparecer como lentidão ao dar descarga, em pias d
 
 ## Como é feito o serviço
 
-Fazemos a raspagem e a higienização interna da coluna com equipamento próprio para tubulações verticais. O objetivo é remover a sujeira acumulada e normalizar o fluxo de água.
+A raspagem e a higienização interna da coluna são feitas com equipamento para tubulações verticais. O objetivo é remover a sujeira acumulada e normalizar o fluxo de água.
 
 ## Como evitar entupimento de coluna
 

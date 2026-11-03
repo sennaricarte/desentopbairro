@@ -33,4 +33,4 @@ Na área externa, use calhas para que a água da chuva não sobrecarregue a rede
 - Caixas de gordura
 - Tubulações de água pluvial
 
-Em casos mais complexos, usamos [hidrojateamento](/hidrojateamento/) e confirmamos o estado do cano com [vídeo inspeção](/video-inspecao/).
+Em casos mais complexos, entra o [hidrojateamento](/hidrojateamento/), com o estado do cano confirmado por [vídeo inspeção](/video-inspecao/).
