@@ -19,15 +19,15 @@ const faq = [
   { q: 'Como peço um orçamento?', a: 'Ligue ou chame no WhatsApp, descreva o problema e informe cidade e bairro. Foto ou vídeo ajudam. Peça o orçamento antes de aprovar o serviço.' },
 ];
 const heroImg = await getImage({ src: FOTOS.cabo.src, width: 1200, format: 'jpg' });
-const title = 'Desentupidora 24 Horas em São Paulo e Região | Desentop Bairro';
-const description = 'Desentupidora 24 horas: pia, ralo, vaso sanitário, esgoto, limpa fossa e hidrojateamento. Atendimento em SP e região. Ligue ou chame no WhatsApp.';
+const title = 'Desentupidora 24h em Registro e Itararé | Desentop Bairro';
+const description = 'Desentupidora 24 horas em Registro, Itararé e região: pia, ralo, vaso, esgoto, limpa fossa e hidrojateamento. Ligue ou chame no WhatsApp.';
 ---
-<Base title={title} description={description} pageName="Desentupidora 24 Horas em São Paulo e Região" faq={faq} image={{ url: new URL(heroImg.src, SITE.url).href, alt: FOTOS.cabo.alt, width: heroImg.attributes.width, height: heroImg.attributes.height }}>
+<Base title={title} description={description} pageName="Desentupidora 24 Horas em Registro, Itararé e Região" faq={faq} image={{ url: new URL(heroImg.src, SITE.url).href, alt: FOTOS.cabo.alt, width: heroImg.attributes.width, height: heroImg.attributes.height }}>
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
         <span class="badge">{SITE.openingHoursText}</span>
-        <h1>Desentupidora 24 horas em São Paulo e região</h1>
+        <h1>Desentupidora 24 horas em Registro, Itararé e região</h1>
         <p class="lead">Entupiu? Desentupimos pia, ralo, vaso sanitário, colunas e redes de esgoto em casas, comércios e condomínios. Fale agora e peça seu orçamento.</p>
         <div class="btns">
           <a class="btn btn-primary" href={telLink}>Ligar {SITE.phoneDisplay}</a>

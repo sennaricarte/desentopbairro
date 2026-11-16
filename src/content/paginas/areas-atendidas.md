@@ -1,16 +1,16 @@
 ---
 title: "Áreas Atendidas"
 seoTitle: "Áreas Atendidas em SP | Desentop Bairro"
-description: "Veja onde a Desentop Bairro atende: Grande São Paulo, interior e litoral de SP, com páginas dedicadas para Registro e Itararé."
+description: "Veja onde a Desentop Bairro atende: Registro, Vale do Ribeira e Itararé, com páginas dedicadas. Outras regiões podem ser confirmadas pelo WhatsApp."
 kind: institucional
 group: institucional
 order: 90
-intro: "Atendemos a Grande São Paulo, o interior e o litoral do estado. Confirme a disponibilidade para o seu endereço pelo telefone ou WhatsApp."
+intro: "Atendemos Registro, o Vale do Ribeira e Itararé. Para outras cidades, confirme a disponibilidade pelo telefone ou WhatsApp."
 related: [desentupidora, desentupidora-registro-sp, desentupidora-24-horas-itarare]
 ---
 ## Onde atendemos
 
-A Desentop Bairro atende **Grande São Paulo, interior e litoral de SP**. Como a disponibilidade depende do endereço e do horário, confirme antes de agendar.
+A Desentop Bairro atende **Registro, Vale do Ribeira e Itararé**. Para outras cidades, confirme antes de agendar: a disponibilidade depende do endereço e do horário.
 
 ## Como confirmar a sua região
 

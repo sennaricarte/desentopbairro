@@ -10,8 +10,12 @@ export const SITE = {
   whatsapp: '5515997782797',
   whatsappMessage: 'Olá! Preciso de um desentupimento. Podem me atender?',
   // Modelo SAB (Service Area Business): sem endereço no schema.
-  areaServedText: 'Grande São Paulo, interior e litoral de SP',
+  areaServedText: 'Registro, Vale do Ribeira e Itararé (SP). Outras regiões sob consulta',
+  // [CONFIRMAR] Cidades/regiões para o schema (areaServed). Ajustar só com cobertura confirmada.
+  areaServedSchema: ['Registro', 'Vale do Ribeira', 'Itararé'] as string[],
   openingHoursText: 'Atendimento 24 horas, todos os dias',
+  // [CONFIRMAR] Só vira true quando o dono validar o atendimento 24h. Controla o schema de horário.
+  openingConfirmed: false,
   email: '',
 } as const;
 

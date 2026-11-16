@@ -22,13 +22,12 @@ const graph: Record<string, unknown>[] = [
     telephone: SITE.phoneE164,
     logo: abs('/logo-schema.png'),
     image: abs('/og.png'),
-    priceRange: '$$',
-    areaServed: { '@type': 'AdministrativeArea', name: 'Estado de São Paulo' },
-    openingHoursSpecification: {
+    areaServed: SITE.areaServedSchema.map((n) => ({ '@type': 'AdministrativeArea', name: n })),
+    ...(SITE.openingConfirmed ? { openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
       opens: '00:00', closes: '23:59',
-    },
+    } } : {}),
     contactPoint: { '@type': 'ContactPoint', telephone: SITE.phoneE164, contactType: 'customer service', availableLanguage: 'pt-BR', areaServed: 'BR' },
   },
   { '@type': 'WebSite', '@id': abs('/#site'), url: SITE.url + '/', name: SITE.name, inLanguage: 'pt-BR', publisher: { '@id': BUSINESS } },
@@ -44,7 +43,7 @@ if (service) {
   graph.push({
     '@type': 'Service', '@id': url + '#servico', name: service.name, serviceType: service.name,
     provider: { '@id': BUSINESS }, url,
-    areaServed: (service.areaServed?.length ? service.areaServed : ['Estado de São Paulo']).map((n) => ({ '@type': 'AdministrativeArea', name: n })),
+    areaServed: (service.areaServed?.length ? service.areaServed : SITE.areaServedSchema).map((n) => ({ '@type': 'AdministrativeArea', name: n })),
   });
 }
 if (faq.length) {
