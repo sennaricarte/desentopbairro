@@ -34,5 +34,18 @@ const { title, description, noindex = false, pageName, crumbs = [], service = nu
     <main id="conteudo"><slot /></main>
     <Footer />
     <MobileBar />
+    <script>
+      // Vercel Web Analytics + eventos de conversão (telefone e WhatsApp).
+      import { inject, track } from '@vercel/analytics';
+      inject();
+      document.addEventListener('click', (e) => {
+        const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const page = location.pathname;
+        if (href.startsWith('tel:')) track('click_tel', { page });
+        else if (href.includes('wa.me/')) track('click_whatsapp', { page });
+      });
+    </script>
   </body>
 </html>
